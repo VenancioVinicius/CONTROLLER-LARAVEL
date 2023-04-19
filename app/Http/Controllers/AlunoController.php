@@ -11,9 +11,27 @@ class AlunoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return "<h1> Aluno Controller </h1>";
+
+    public $alunos = [[
+        "id" => '1',
+        "nome" => "Vinicius",
+        "email" => "vinicius@email.com"
+    ]];
+
+    public function __construct(){
+
+        $aux = session('alunos');
+
+        if(!isset($aux)){
+            session(['alunos' => $this->alunos]);
+        }
+
+    }
+    
+
+    public function index(){
+        $alunos = session('alunos');
+        return view('alunos.index', compact('alunos'));
     }
 
     /**
@@ -23,7 +41,7 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alunos.create');
     }
 
     /**
@@ -34,7 +52,27 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $aux = session('alunos');
+
+        $ids = array_column($aux, 'id');
+
+        if(count($ids) > 0){
+            $new_id = max($ids) + 1;
+        }else {
+            $new_id = 1;
+        }
+
+        $novo = [
+            "id" => $new_id,
+            "nome" => $request->nome,
+            "email" => $request->email
+        ];
+
+        array_push($aux, $novo);
+        session(['alunos' -> $aux]);
+
+        return redirect()->route('alunos.index');
+
     }
 
     /**
@@ -45,7 +83,13 @@ class AlunoController extends Controller
      */
     public function show($id)
     {
-        //
+        $aux = session('alunos');
+
+        $indice = array_search($id, array_collumn($aux, 'id'));
+
+        $aluno = $aux[$indice];
+
+        return view('alunos.show', compact('aluno'));
     }
 
     /**
@@ -56,7 +100,13 @@ class AlunoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aux = session('alunos');
+
+        $indice = array_search($id, array_collumn($aux, 'id'));
+
+        $aluno = $aux[$indice];
+
+        return view('alunos.edit', compact('aluno'));
     }
 
     /**
@@ -68,7 +118,21 @@ class AlunoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alterado = [
+            "id" => $new_id,
+            "nome" => $request->nome,
+            "email" => $request->email
+        ];
+
+        $aux = session('alunos');
+
+        $indice = array_search($id, array_collumn($aux, "id"));
+
+        $aux[$indice] = $alterado;
+
+        session(['alunos' => $aux]);
+
+        return redirect()->route('alunos.index');
     }
 
     /**
