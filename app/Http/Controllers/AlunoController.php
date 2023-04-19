@@ -85,7 +85,7 @@ class AlunoController extends Controller
     {
         $aux = session('alunos');
 
-        $indice = array_search($id, array_collumn($aux, 'id'));
+        $indice = array_search($id, array_column($aux, 'id'));
 
         $aluno = $aux[$indice];
 
@@ -102,7 +102,7 @@ class AlunoController extends Controller
     {
         $aux = session('alunos');
 
-        $indice = array_search($id, array_collumn($aux, 'id'));
+        $indice = array_search($id, array_column($aux, 'id'));
 
         $aluno = $aux[$indice];
 
@@ -119,14 +119,14 @@ class AlunoController extends Controller
     public function update(Request $request, $id)
     {
         $alterado = [
-            "id" => $new_id,
+            "id" => $id,
             "nome" => $request->nome,
             "email" => $request->email
         ];
 
         $aux = session('alunos');
 
-        $indice = array_search($id, array_collumn($aux, "id"));
+        $indice = array_search($id, array_column($aux, 'id'));
 
         $aux[$indice] = $alterado;
 
