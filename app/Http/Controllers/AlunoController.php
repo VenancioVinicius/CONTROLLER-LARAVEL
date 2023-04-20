@@ -69,7 +69,7 @@ class AlunoController extends Controller
         ];
 
         array_push($aux, $novo);
-        session(['alunos' -> $aux]);
+        session(['alunos' => $aux]);
 
         return redirect()->route('alunos.index');
 
@@ -143,6 +143,14 @@ class AlunoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aux = session('alunos');
+
+        $indice = array_search($id, array_column($aux, 'id'));
+
+        unset($aux[$indice]);
+
+        session(['alunos' => $aux]);
+
+        return redirect() -> route('clientes.index');
     }
 }
