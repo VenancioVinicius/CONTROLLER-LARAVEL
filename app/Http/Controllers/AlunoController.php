@@ -151,6 +151,6 @@ class AlunoController extends Controller
 
         session(['alunos' => $aux]);
 
-        return redirect() -> route('clientes.index');
+        return redirect() -> route('alunos.index');
     }
 }
