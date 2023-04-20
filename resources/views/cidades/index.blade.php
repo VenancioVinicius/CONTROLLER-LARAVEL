@@ -1,7 +1,7 @@
 <h2>Lista de Cidade</h2>
 
 <td>
-    <form action="{{ route('cidades.create') }}" method="POST">
+    <form action="{{ route('cidades.create') }}">
         <input type='submit' value='Cadastrar Cidade'>
     </form>
 </td>

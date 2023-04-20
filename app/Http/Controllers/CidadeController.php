@@ -42,7 +42,7 @@ class CidadeController extends Controller
      */
     public function create()
     {
-        return view('cidade.create');
+        return view('cidades.create');
     }
 
     /**
