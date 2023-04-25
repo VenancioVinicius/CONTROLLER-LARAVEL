@@ -136,6 +136,14 @@ class CidadeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aux = session('cidades');
+
+        $indice = array_search($id, array_column($aux, 'id'));
+
+        unset($aux[$indice]);
+
+        session(['cidades' => $aux]);
+
+        return redirect() -> route('cidades.index');
     }
 }
