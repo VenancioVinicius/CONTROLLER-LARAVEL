@@ -3,13 +3,13 @@
    <!-- Token de segurança salvo na sessão, verificar o formulário submetido -->
    @csrf
    <a href="{{route('cidades.index')}}"><h4>voltar</h4></a>
-   <label>Nome: </label> <input type='text' name='nome'>
-   <select name="Porte">
+   <label>Nome: </label> <input type='text' name='cidade'><br><br>
+   <label>Porte: </label> <select name="porte">
 
       <option value="pequeno">Pequeno</option>
       <option value="medio">Medio</option>
       <option value="grande">Grande</option>
   
-   </select>
+   </select><br><br>
    <input type="submit" value="Salvar">
 </form>

@@ -53,7 +53,26 @@ class CidadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $aux = session('cidades');
+
+        $ids = array_column($aux, 'id');
+
+        if(count($ids) > 0){
+            $new_id = max($ids) + 1;
+        }else {
+            $new_id = 1;
+        }
+
+        $novo = [
+            "id" => $new_id,
+            "cidade" => $request->cidade,
+            "porte" => $request->porte
+        ];
+
+        array_push($aux, $novo);
+        session(['cidades' => $aux]);
+
+        return redirect()->route('cidades.index');
     }
 
     /**
