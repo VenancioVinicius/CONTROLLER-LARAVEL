@@ -27,7 +27,7 @@
                <td>{{ $item['cidade'] }}</td>
                <td>{{ $item['porte'] }}</td>
                <td>
-                    <form action="{{ route('cidades.edit', $item['id']) }}" method="POST">
+                    <form action="{{ route('cidades.edit', $item['id']) }}" method="GET">
                         <input type='submit' value='Editar'>
                     </form>
                 </td>

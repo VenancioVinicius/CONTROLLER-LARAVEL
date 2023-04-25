@@ -1,11 +1,17 @@
-<h2>Alterar Aluno</h2>
-<form action="{{ route('alunos.update', $aluno['id']) }}" method="POST">
+<h2>Alterar Cidade</h2>
+<form action="{{ route('cidades.update', $cidade['id']) }}" method="POST">
    <!-- Token de Segurança -->
    <!-- Define o método de submissão como PUT -->
    @csrf
    @method('PUT')
-   <a href="{{route('alunos.index')}}"><h4>voltar</h4></a>
-   <label>Nome: </label> <input type='text' name='nome' value='{{$aluno['nome']}}'>
-   <label>E-mail: </label> <input type='text' name='email' value='{{$aluno['email']}}'>
+   <a href="{{route('cidades.index')}}"><h4>voltar</h4></a>
+   <label>Nome: </label> <input type='text' name='cidade' value='{{$cidade['cidade']}}'> <br><br>
+   <label>Porte: </label> <select name='porte' value='{{$cidade['porte']}}'>
+
+      <option value="Pequeno">Pequeno</option>
+      <option value="Medio">Medio</option>
+      <option value="Grande">Grande</option>
+  
+   </select><br><br>
    <input type="submit" value="Salvar">
 </form>

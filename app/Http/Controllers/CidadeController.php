@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CidadeController extends Controller
@@ -94,7 +93,13 @@ class CidadeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aux = session('cidades');
+
+        $indice = array_search($id, array_column($aux, 'id'));
+
+        $cidade = $aux[$indice];
+
+        return view('cidades.edit', compact('cidade'));
     }
 
     /**
@@ -106,7 +111,21 @@ class CidadeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alterado = [
+            "id" => $id,
+            "cidade" => $request->cidade,
+            "porte" => $request->porte
+        ];
+
+        $aux = session('cidades');
+
+        $indice = array_search($id, array_column($aux, 'id'));
+
+        $aux[$indice] = $alterado;
+
+        session(['cidades' => $aux]);
+
+        return redirect()->route('cidades.index');
     }
 
     /**
